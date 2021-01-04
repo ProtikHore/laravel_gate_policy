@@ -19,11 +19,11 @@ Route::get('/', function () {
 });
 
 Route::get('permission', function () {
-    if (! Gate::allows('permission', Auth::user())) {
-        abort(403);
-    } else {
-        return 'hello';
-    }
+//    if (! Gate::allows('permission', Auth::user())) {
+//        abort(403);
+//    } else {
+//        return 'hello';
+//    }
 });
 
 Auth::routes();
