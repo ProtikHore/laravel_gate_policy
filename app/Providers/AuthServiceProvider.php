@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Policies\PermissionPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        User::class => PermissionPolicy::class,
     ];
 
     /**
@@ -25,11 +27,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Gate::define('permission', function (User $user) {
-            if ($user->permission) {
-                return true;
-            }
-            return false;
-        });
+//        Gate::define('permission', 'App\Policies\PermissionPolicy@permission');
+//        Gate::define('permission', [PermissionPolicy::class, 'permission']);
     }
 }
